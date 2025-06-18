@@ -1,4 +1,4 @@
-package com.siga.proyectoSiga.Controller;
+package com.siga.proyectoSiga.controller;
 
 import java.util.List;
 
