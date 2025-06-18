@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "usuario")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Data // Genera getters, setters, toString, equals y hashCode
+@NoArgsConstructor // Genera un constructor sin parámetros
+@AllArgsConstructor // Genera un constructor con todos los parámetros
 public class Usuario {
     @Id
     @Column(nullable = false, length = 9)
