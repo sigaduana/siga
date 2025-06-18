@@ -1,22 +1,33 @@
 package com.siga.proyectoSiga.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.siga.proyectoSiga.model.Usuario;
+import com.siga.proyectoSiga.service.UsuarioService;
 
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     //crear un nuevo usuario
     @PostMapping("/crear")   
     public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario usuario) {
-         Usuario nuevoUsuario = usuarioService.crearUsuario(usuario);
-         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoUsuario);
-    }
+             Usuario nuevoUsuario = usuarioService.crearUsuario(usuario);
+             return ResponseEntity.status(HttpStatus.CREATED).body(nuevoUsuario);
+        }
 
     //consultar un usuario por run
     @GetMapping("/{run}") 
@@ -24,17 +35,6 @@ public class UsuarioController {
         Usuario usuario = usuarioService.obtenerUsuario(run);
         if (usuario != null) {
             return ResponseEntity.ok(usuario);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    //actualizar un usuario por run
-    @PutMapping("/{run}")
-    public ResponseEntity<Usuario> actualizarUsuario(@PathVariable String run, @RequestBody Usuario usuario) {
-        Usuario usuarioActualizado = usuarioService.actualizarUsuario(run, usuario);
-        if (usuarioActualizado != null) {
-            return ResponseEntity.ok(usuarioActualizado);
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -50,10 +50,5 @@ public class UsuarioController {
             return ResponseEntity.notFound().build();
         }
     }
+}
 
-    //listar todos los usuarios
-    @GetMapping("/listar")
-    public ResponseEntity<List<Usuario>> listarUsuarios() {
-        List<Usuario> usuarios = usuarioService.listarUsuarios();
-        return ResponseEntity.ok(usuarios);
-    }
