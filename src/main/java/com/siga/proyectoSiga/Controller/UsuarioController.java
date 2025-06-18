@@ -4,6 +4,9 @@ import org.springframework.web.bind.annotation.*;
 import com.siga.proyectoSiga.model.Usuario;
 import com.siga.proyectoSiga.service.UsuarioService;
 
+import com.siga.proyectoSiga.model.Usuario;
+import com.siga.proyectoSiga.service.UsuarioService;
+
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
@@ -29,5 +32,6 @@ public class UsuarioController {
     public void eliminarUsuario(@PathVariable String run){
         usuarioService.eliminarUsuarioPorRun(run);
     }
-
 }
+
+
