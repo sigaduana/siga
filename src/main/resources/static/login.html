@@ -7,42 +7,40 @@
 </head>
 <body>
   <h2>Crear Cuenta Chileno</h2>
-  <form id="crearCuentaForm">
-    <input type="text" placeholder="Nombre" required>
-    <input type="text" placeholder="Apellido" required>
-    <input type="sexo" placeholder="Sexo" required>
-    <input type="telefono" placeholder="Telefono" required>
-    <input type="contraseña" placeholder="Contraseña" required>
+  <form id="crear">
+    <input type="text" placeholder="RUN" id="run" required>
+    <input type="text" placeholder="Nombre" id="nombre" required>
+    <input type="text" placeholder="Apellido" id="apellido" required>
+    <input type="text" placeholder="Sexo" id="sexo" required>
+    <input type="tel" placeholder="Telefono" id="telefono" required>
+    <input type="password" placeholder="Contraseña" id="contrasena" required>
     <button type="submit">Crear Cuenta</button>
   </form>
-  <p>¿Ya tienes cuenta? <a href="login.html">Iniciar sesión</a></p>
+  <p>¿Ya tienes cuenta? <a href="iniciosesion.html">Iniciar sesión</a></p>
+
+  <script>
+    document.getElementById('crear').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const run = document.getElementById('run').value;
+      const nombre = document.getElementById('nombre').value;
+      const apellido = document.getElementById('apellido').value;
+      const sexo = document.getElementById('sexo').value;
+      const telefono = document.getElementById('telefono').value;
+      const contrasena = document.getElementById('contrasena').value;
+
+      const response = await fetch('http://localhost:8080/usuario/crear', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ run, nombre, apellido, sexo, telefono, contrasena })
+      });
+
+      if (response.ok) {
+        alert('Cuenta creada correctamente');
+        window.location.href = 'login.html';
+      } else {
+        alert('Error al crear la cuenta');
+      }
+    });
+  </script>
 </body>
 </html>
-
-<!-- crear_cuenta.html -->
-<!-- ...existing code... -->
-<script>
-document.getElementById('crear').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const inputs = e.target.elements;
-  const run = inputs[0].value;
-  const nombre = inputs[1].value;
-  const apellido = inputs[2].value;
-  const sexo = inputs[3].value;
-  const telefono = inputs[4].value;
-  const contraseña = inputs[5].value;
-
-  const response = await fetch('http://localhost:8080/usuario/crear', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ run, nombre, apellido, sexo, telefono, contraseña })
-  });
-
-  if (response.ok) {
-    alert('Cuenta creada correctamente');
-    window.location.href = 'login.html';
-  } else {
-    alert('Error al crear la cuenta');
-  }
-});
-</script>
