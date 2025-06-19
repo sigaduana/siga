@@ -1,23 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Ingreso de Mascotas</title>
-  <link rel="stylesheet" href="/css/estilos.css">
-</head>
-<body>
-  <h2>Ingreso de Mascotas a Chile</h2>
-  <form id="formMascota">
-    <input type="text" name="nombre" placeholder="Nombre" required>
-    <input type="text" name="especie" placeholder="Especie" required>
-    <input type="text" name="raza" placeholder="Raza">
-    <input type="text" name="sexo" placeholder="Sexo">
-    <input type="number" name="edad" placeholder="Edad">
-    <input type="text" name="microchip" placeholder="Microchip">
-    <input type="text" name="paisOrigen" placeholder="País de origen" required>
-    <button type="submit">Enviar Formulario</button>
-  </form>
-  <p id="mensajeMascota"></p>
-  <script src="/js/main.js"></script>
-</body>
+<!-- mascotas.html -->
+<form id="mascotaForm">
+  <input type="text" id="nombre" placeholder="Nombre de la mascota" required>
+  <input type="text" id="raza" placeholder="Raza" required>
+  <button type="submit">Registrar Mascota</button>
+</form>
+<script src="js/mascotas.js"></script>
 </html>
