@@ -1,8 +1,66 @@
-<!-- mascotas.html -->
-<form id="mascotaForm">
-  <input type="text" id="nombre" placeholder="Nombre de la mascota" required>
-  <input type="text" id="raza" placeholder="Raza" required>
-  <button type="submit">Registrar Mascota</button>
-</form>
-<script src="js/mascotas.js"></script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrar Mascota</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    .container { max-width: 400px; margin: auto; }
+    input, select { width: 100%; margin: 5px 0 15px 0; padding: 8px; }
+    button { width: 100%; padding: 10px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Registrar Mascota</h2>
+    <form id="mascotaForm">
+      <input type="text" id="nombre_mascota" placeholder="Nombre de la mascota" required>
+      <input type="text" id="especie" placeholder="Especie" required>
+      <input type="text" id="raza" placeholder="Raza" required>
+      <input type="text" id="color" placeholder="Color" required>
+      <input type="text" id="edad" placeholder="Edad" required>
+      <label>¿Vacunado?
+        <select id="vacuna" required>
+          <option value="true">Sí</option>
+          <option value="false">No</option>
+        </select>
+      </label>
+      <button type="submit">Registrar Mascota</button>
+    </form>
+    <div id="mascotaMsg"></div>
+    <button onclick="window.location.href='opciones.html'">Volver al Menú</button>
+  </div>
+  <script>
+    // Recupera el usuario desde localStorage (debes guardarlo al iniciar sesión o crear cuenta)
+    const usuario = JSON.parse(localStorage.getItem('usuario'));
+    if (!usuario) {
+      alert('Debes iniciar sesión');
+      window.location.href = 'login.html';
+    }
+
+    document.getElementById('mascotaForm').onsubmit = async function(e) {
+      e.preventDefault();
+      const data = {
+        nombre_mascota: document.getElementById('nombre_mascota').value,
+        especie: document.getElementById('especie').value,
+        raza: document.getElementById('raza').value,
+        color: document.getElementById('color').value,
+        edad: document.getElementById('edad').value,
+        vacuna: document.getElementById('vacuna').value === "true",
+        usuario: usuario
+      };
+      const response = await fetch('http://localhost:8080/formulario-mascota/crear', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (response.ok) {
+        document.getElementById('mascotaMsg').innerText = "Mascota registrada correctamente";
+        document.getElementById('mascotaForm').reset();
+      } else {
+        document.getElementById('mascotaMsg').innerText = "Error al registrar mascota";
+      }
+    };
+  </script>
+</body>
 </html>

@@ -11,12 +11,18 @@
     <input type="text" placeholder="RUN" id="run" required>
     <input type="text" placeholder="Nombre" id="nombre" required>
     <input type="text" placeholder="Apellido" id="apellido" required>
-    <input type="text" placeholder="Sexo" id="sexo" required>
+    <select id="sexo" required>
+      <option value="" disabled selected>Selecciona sexo</option>
+      <option value="F">Femenino</option>
+      <option value="M">Masculino</option>
+      <option value="O">Otro</option>
+    </select>
     <input type="tel" placeholder="Telefono" id="telefono" required>
     <input type="password" placeholder="Contraseña" id="contrasena" required>
     <button type="submit">Crear Cuenta</button>
   </form>
   <p>¿Ya tienes cuenta? <a href="iniciosesion.html">Iniciar sesión</a></p>
+  <button onclick="window.history.back()">Volver Atrás</button>
 
   <script>
     document.getElementById('crear').addEventListener('submit', async function(e) {
@@ -35,8 +41,10 @@
       });
 
       if (response.ok) {
+        const usuario = await response.json();
+        localStorage.setItem('usuario', JSON.stringify(usuario));
         alert('Cuenta creada correctamente');
-        window.location.href = 'login.html';
+        window.location.href = 'opciones.html';
       } else {
         alert('Error al crear la cuenta');
       }
