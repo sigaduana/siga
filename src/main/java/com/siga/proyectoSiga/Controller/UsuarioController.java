@@ -20,7 +20,6 @@ public class UsuarioController {
         return usuarioService.crearUsuario(usuario);
     }
     
-
     //consultar un usuario por run
     @GetMapping("/{run}") 
     public Usuario obtenerUsuarioPorRun(@PathVariable String run){
