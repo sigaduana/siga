@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Perfil de Usuario</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    .container { max-width: 600px; margin: auto; }
+    .card { border: 1px solid #ccc; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+    h2 { margin-top: 0; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid #ddd; padding: 8px; }
+    th { background: #f0f0f0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Perfil de Usuario</h2>
+    <div class="card" id="usuarioDatos"></div>
+    <h3>Mascotas Registradas</h3>
+    <table id="tablaMascotas">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Especie</th>
+          <th>Raza</th>
+          <th>Color</th>
+          <th>Edad</th>
+          <th>Vacunado</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <button onclick="window.location.href='opciones.html'">Volver al Menú</button>
+  </div>
+  <script>
+    // Recupera usuario de localStorage
+    const usuario = JSON.parse(localStorage.getItem('usuario'));
+    if (!usuario) {
+      alert('Debes iniciar sesión');
+      window.location.href = 'login.html';
+    }
+
+    // Muestra datos del usuario
+    document.getElementById('usuarioDatos').innerHTML = `
+      <strong>RUN:</strong> ${usuario.run}<br>
+      <strong>Nombre:</strong> ${usuario.nombre} ${usuario.apellido}<br>
+      <strong>Sexo:</strong> ${usuario.sexo}<br>
+      <strong>Teléfono:</strong> ${usuario.telefono}
+    `;
+
+    // Consulta mascotas del usuario por run
+    fetch(`http://localhost:8080/formulario-mascota/usuario/${usuario.run}`)
+      .then(res => res.ok ? res.json() : [])
+      .then(mascotas => {
+        const tbody = document.querySelector('#tablaMascotas tbody');
+        if (!mascotas || mascotas.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="6">No hay mascotas registradas.</td></tr>';
+        } else {
+          tbody.innerHTML = mascotas.map(m => `
+            <tr>
+              <td>${m.nombre_mascota}</td>
+              <td>${m.especie}</td>
+              <td>${m.raza}</td>
+              <td>${m.color}</td>
+              <td>${m.edad}</td>
+              <td>${m.vacuna ? 'Sí' : 'No'}</td>
+            </tr>
+          `).join('');
+        }
+      })
+      .catch(() => {
+        document.querySelector('#tablaMascotas tbody').innerHTML = '<tr><td colspan="6">Error al cargar mascotas.</td></tr>';
+      });
+  </script>
+</body>
+</html>
