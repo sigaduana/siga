@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Crear Cuenta</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    .container { max-width: 400px; margin: auto; }
+    input, select { width: 100%; margin: 5px 0 15px 0; padding: 8px; }
+    button { width: 100%; padding: 10px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Crear Cuenta</h2>
+    <form id="crear">
+      <input type="text" id="run" placeholder="RUN" required>
+      <input type="text" id="nombre" placeholder="Nombre" required>
+      <input type="text" id="apellido" placeholder="Apellido" required>
+      <select id="sexo" required>
+        <option value="" disabled selected>Selecciona sexo</option>
+        <option value="F">Femenino</option>
+        <option value="M">Masculino</option>
+        <option value="O">Otro</option>
+      </select>
+      <input type="tel" id="telefono" placeholder="Teléfono" required>
+      <input type="password" id="contrasena" placeholder="Contraseña" required>
+      <button type="submit">Crear Cuenta</button>
+    </form>
+    <div id="mensaje"></div>
+    <p>¿Ya tienes cuenta? <a href="iniciosesion.html">Iniciar sesión</a></p>
+    <button onclick="window.history.back()">Volver</button>
+  </div>
+  <script>
+    document.getElementById('crear').onsubmit = async function(e) {
+      e.preventDefault();
+      const data = {
+        run: document.getElementById('run').value,
+        nombre: document.getElementById('nombre').value,
+        apellido: document.getElementById('apellido').value,
+        sexo: document.getElementById('sexo').value,
+        telefono: document.getElementById('telefono').value,
+        contrasena: document.getElementById('contrasena').value
+      };
+      const response = await fetch('http://localhost:8080/usuario/crear', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (response.ok) {
+        const usuario = await response.json();
+        localStorage.setItem('usuario', JSON.stringify(usuario));
+        document.getElementById('mensaje').innerText = "Cuenta creada correctamente";
+        setTimeout(() => {
+          window.location.href = 'opciones.html';
+        }, 1000);
+      } else {
+        document.getElementById('mensaje').innerText = "Error al crear la cuenta";
+      }
+    };
+  </script>
+</body>
+</html>

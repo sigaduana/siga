@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Iniciar Sesión</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    .container { max-width: 400px; margin: auto; }
+    input { width: 100%; margin: 5px 0 15px 0; padding: 8px; }
+    button { width: 100%; padding: 10px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Iniciar Sesión</h2>
+    <form id="loginForm">
+      <input type="text" id="run" placeholder="RUN" required>
+      <input type="password" id="contrasena" placeholder="Contraseña" required>
+      <button type="submit">Iniciar Sesión</button>
+    </form>
+    <div id="mensaje"></div>
+    <button onclick="window.history.back()">Volver Atrás</button>
+  </div>
+  <script>
+    document.getElementById('loginForm').onsubmit = async function(e) {
+      e.preventDefault();
+      const run = document.getElementById('run').value;
+      const contrasena = document.getElementById('contrasena').value;
+      const response = await fetch(`http://localhost:8080/usuario/${run}`);
+      if (response.ok) {
+        const usuario = await response.json();
+        if (usuario.contrasena === contrasena) {
+          localStorage.setItem('usuario', JSON.stringify(usuario));
+          window.location.href = 'opciones.html';
+        } else {
+          document.getElementById('mensaje').innerText = "Contraseña incorrecta";
+        }
+      } else {
+        document.getElementById('mensaje').innerText = "RUN no encontrado";
+      }
+    };
+  </script>
+</body>
+</html>
