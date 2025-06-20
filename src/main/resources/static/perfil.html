@@ -2,21 +2,112 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Perfil de Usuario</title>
+  <title>SIGA - Perfil de Usuario</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 40px; }
-    .container { max-width: 600px; margin: auto; }
-    .card { border: 1px solid #ccc; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
-    h2 { margin-top: 0; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { border: 1px solid #ddd; padding: 8px; }
-    th { background: #f0f0f0; }
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: white;
+    }
+
+    .header {
+      background-color: #002147;
+      color: white;
+      padding: 15px 20px;
+      font-size: 20px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+
+    .header span {
+      margin-right: 10px;
+      cursor: pointer;
+      font-size: 24px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      background-color: white;
+      padding: 25px;
+    }
+
+    h2, h3 {
+      color: #002147;
+      text-align: center;
+    }
+
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      background-color: #fafafa;
+    }
+
+    .card strong {
+      display: inline-block;
+      width: 120px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f0f0f0;
+      color: #002147;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    button {
+      width: 100%;
+      background-color: #FFCC00;
+      color: black;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #e6b800;
+    }
   </style>
 </head>
 <body>
+
+  <div class="header">
+    <span onclick="window.history.back()">←</span> SIGA
+  </div>
+
   <div class="container">
     <h2>Perfil de Usuario</h2>
     <div class="card" id="usuarioDatos"></div>
+
     <h3>Mascotas Registradas</h3>
     <table id="tablaMascotas">
       <thead>
@@ -31,25 +122,23 @@
       </thead>
       <tbody></tbody>
     </table>
-    <button onclick="window.location.href='opciones.html'">Volver al Menú</button>
+
   </div>
+
   <script>
-    // Recupera usuario de localStorage
     const usuario = JSON.parse(localStorage.getItem('usuario'));
     if (!usuario) {
       alert('Debes iniciar sesión');
       window.location.href = 'login.html';
     }
 
-    // Muestra datos del usuario
     document.getElementById('usuarioDatos').innerHTML = `
-      <strong>RUN:</strong> ${usuario.run}<br>
-      <strong>Nombre:</strong> ${usuario.nombre} ${usuario.apellido}<br>
-      <strong>Sexo:</strong> ${usuario.sexo}<br>
-      <strong>Teléfono:</strong> ${usuario.telefono}
+      <p><strong>RUN:</strong> ${usuario.run}</p>
+      <p><strong>Nombre:</strong> ${usuario.nombre} ${usuario.apellido}</p>
+      <p><strong>Sexo:</strong> ${usuario.sexo}</p>
+      <p><strong>Teléfono:</strong> ${usuario.telefono}</p>
     `;
 
-    // Consulta mascotas del usuario por run
     fetch(`http://localhost:8080/formulario-mascota/usuario/${usuario.run}`)
       .then(res => res.ok ? res.json() : [])
       .then(mascotas => {
@@ -73,5 +162,6 @@
         document.querySelector('#tablaMascotas tbody').innerHTML = '<tr><td colspan="6">Error al cargar mascotas.</td></tr>';
       });
   </script>
+
 </body>
 </html>
