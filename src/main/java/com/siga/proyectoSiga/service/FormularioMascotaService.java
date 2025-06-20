@@ -47,4 +47,8 @@ public class FormularioMascotaService {
         return formularioMascotaRepository.findAll();
     }
 
+    public List<FormularioMascota> listarFormulariosMascotaPorUsuario(String run) {
+        return formularioMascotaRepository.findByUsuarioRun(run);
+    }
+
 }

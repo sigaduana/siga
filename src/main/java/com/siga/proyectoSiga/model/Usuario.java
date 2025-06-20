@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor // Genera un constructor con todos los parámetros
 public class Usuario {
     @Id
-    @Column(nullable = false, length = 9)
+    @Column(nullable = false, length = 10)
     private String run;
 
     @Column(nullable = false, length = 40)

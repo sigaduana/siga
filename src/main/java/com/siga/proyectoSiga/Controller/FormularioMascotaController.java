@@ -68,4 +68,12 @@ public class FormularioMascotaController {
         List<FormularioMascota> formulariosMascota = formularioMascotaService.listarFormulariosMascota();
         return ResponseEntity.ok(formulariosMascota);
     }
+
+    //listar mascotas por usuario
+    @GetMapping("/usuario/{run}")
+    public ResponseEntity<List<FormularioMascota>> listarFormulariosMascotaPorUsuario(@PathVariable String run) {
+        List<FormularioMascota> formulariosMascota = formularioMascotaService.listarFormulariosMascotaPorUsuario(run);
+        return ResponseEntity.ok(formulariosMascota);
+    }
+
 }
