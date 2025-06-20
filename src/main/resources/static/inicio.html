@@ -2,18 +2,64 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Pantalla de Inicio</title>
+  <title>SIGA - Inicio</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 40px; }
-    .container { max-width: 400px; margin: auto; text-align: center; }
-    button { width: 100%; padding: 10px; margin: 10px 0; font-size: 16px; }
+    body {
+      margin: 0;
+      background-color: #002147;
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      color: white;
+    }
+
+    .logo {
+      font-size: 40px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .subtitulo {
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+
+    .botones button {
+      background-color: #FFCC00;
+      border: none;
+      color: black;
+      padding: 12px 24px;
+      font-size: 16px;
+      margin: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .botones button[disabled] {
+      background-color: #ccc;
+      color: #666;
+      cursor: not-allowed;
+    }
+
+    .botones button:hover:enabled {
+      background-color: #e6b800;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Bienvenido a SIGA</h1>
-    <button onclick="window.location.href='login.html'">Chileno</button>
-    <button disabled style="background:#ccc;cursor:not-allowed;">Extranjero</button>
+    <div class="logo">SIGA</div>
+    <div class="subtitulo">Sistema Integrado de Gestión Aduanera</div>
+    <div class="botones">
+      <button onclick="location.href='login.html'">Chileno/a</button>
+      <button disabled>Extranjero</button>
+    </div>
   </div>
 </body>
 </html>
