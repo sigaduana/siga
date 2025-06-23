@@ -1,0 +1,78 @@
+/* estilos.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #2c3e50, #3498db);
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenedor,
+.form-contenedor {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.botones {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+button {
+  background-color: #ffffff;
+  color: #2c3e50;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #f1f1f1;
+  transform: scale(1.05);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+input {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.mensaje-login {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.mensaje-login a {
+  color: #ffd700;
+  text-decoration: none;
+}
+
+.mensaje-login a:hover {
+  text-decoration: underline;
+}
