@@ -83,8 +83,15 @@
     <button disabled>Formulario Menores</button>
     <button disabled>Formulario Alimentos</button>
     <button onclick="window.location.href='perfil.html'">Perfil</button>
-    <button onclick="window.location.href='inicio.html'">Cerrar Sesión</button>
+    <button onclick="cerrarSesion()">Cerrar Sesión</button>
   </div>
+
+  <script>
+    function cerrarSesion() {
+      localStorage.removeItem('usuario');
+      window.location.href = 'inicio.html';
+    }
+  </script>
 
 </body>
 </html>
