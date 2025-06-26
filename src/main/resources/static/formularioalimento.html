@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario Alimentos</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+    }
+
+    .header {
+      background-color: #002F6C;
+      color: white;
+      padding: 15px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .header a {
+      color: white;
+      text-decoration: none;
+      font-size: 22px;
+      margin-right: 10px;
+    }
+
+    .container {
+      max-width: 420px;
+      margin: 30px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #002F6C;
+    }
+
+    .seccion {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .seccion label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      margin-top: 5px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      background-color: #FFC107;
+      color: black;
+      font-weight: bold;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e0a800;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <span onclick="window.history.back()">←</span> SIGA
+  </div>
+
+  <div class="container">
+    <h2>Declaración SAG<br>(Productos)</h2>
+
+    <form id="formAlimentos">
+      <div class="seccion">
+        <p>Declaro que traigo productos de origen animal<br>(carne, lácteos, embutidos, etc.)</p>
+        <label>
+          <input type="checkbox" id="animalCheck">
+          Por favor especifique tipo y cantidad
+        </label>
+        <input type="text" id="detalleAnimal" placeholder="Descripción">
+      </div>
+
+      <div class="seccion">
+        <p>Declaro que traigo productos de origen vegetal<br>(semillas, frutas, flores, etc.)</p>
+        <label>
+          <input type="checkbox" id="vegetalCheck">
+          Por favor especifique tipo y cantidad
+        </label>
+        <input type="text" id="detalleVegetal" placeholder="Descripción">
+      </div>
+
+      <div class="seccion">
+        <p>Declaro que traigo productos agrícolas<br>(tierra, madera, etc.)</p>
+        <label>
+          <input type="checkbox" id="agricolaCheck">
+          Por favor especifique tipo y cantidad
+        </label>
+        <input type="text" id="detalleAgricola" placeholder="Descripción">
+      </div>
+
+      <button type="submit">Crear formulario alimento</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('formAlimentos').onsubmit = function(e) {
+      e.preventDefault();
+      alert("Formulario enviado correctamente.");
+      this.reset();
+    };
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario Menor</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+    }
+
+    .header {
+      background-color: #002F6C;
+      color: white;
+      padding: 15px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .header a {
+      color: white;
+      text-decoration: none;
+      margin-right: 10px;
+      font-size: 22px;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #002F6C;
+    }
+
+    h3 {
+      margin-top: 30px;
+      color: #002F6C;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      background-color: #FFC107;
+      color: #000;
+      padding: 12px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #e0a800;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <span onclick="window.history.back()">←</span> SIGA
+  </div>
+
+  <div class="container">
+    <h2>Formulario de Menor</h2>
+
+    <h3>Datos del menor</h3>
+    <form id="formMenor">
+      <input type="text" id="nombres_menor" placeholder="Nombres" required>
+      <input type="text" id="apellidos_menor" placeholder="Apellidos" required>
+      <input type="text" id="rut_pasaporte_menor" placeholder="RUT o Pasaporte" required>
+      <input type="text" id="nacionalidad" placeholder="Nacionalidad" required>
+      <input type="date" id="fecha_nacimiento" placeholder="Fecha de Nacimiento" required>
+      <input type="number" id="edad" placeholder="Edad" required>
+      <input type="text" id="direccion" placeholder="Dirección de residencia" required>
+
+      <h3>Datos de padre/madre o tutor</h3>
+      <input type="text" id="nombre_tutor" placeholder="Nombre del tutor" required>
+      <input type="text" id="apellido_tutor" placeholder="Apellido del tutor" required>
+      <input type="text" id="rut_pasaporte_tutor" placeholder="RUT o Pasaporte del tutor" required>
+
+      <select id="acompania" required>
+        <option value="" disabled selected>¿Acompaña al menor en el viaje?</option>
+        <option value="si">Sí</option>
+        <option value="no">No</option>
+      </select>
+
+      <button type="submit">Crear Formulario</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('formMenor').onsubmit = function(e) {
+      e.preventDefault();
+      alert("Formulario del menor creado correctamente.");
+      // Redirigir o limpiar formulario según lógica deseada
+      document.getElementById('formMenor').reset();
+    };
+  </script>
+
+</body>
+</html>
